@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Locations are in the form of [lat,long]
+  def rank(locations)
+
+  end
 end
