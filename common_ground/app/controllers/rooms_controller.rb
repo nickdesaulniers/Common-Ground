@@ -112,8 +112,10 @@ class RoomsController < ApplicationController
   end
 
   def authenticate
+    session[:join] = params[:id]
     @user = session[:user_id] && User.find(session[:user_id])
     
     redirect_to signin_url unless @user
+    session[:join] = nil
   end
 end
