@@ -2,6 +2,7 @@ CommonGround::Application.routes.draw do
   resources :users, :rooms
   post 'users/invite'
   post 'users/:id' => 'users#update'
+  get 'signin' => 'rooms#sign_in'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

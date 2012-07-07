@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_filter :authenticate, :only => [:show]
+  
   # GET /rooms
   # GET /rooms.json
   def index
@@ -83,6 +85,9 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def sign_in
+  end
 
   private
 
@@ -96,5 +101,13 @@ class RoomsController < ApplicationController
     if @room.members > 0
       @room.decrement!(:members)
     end
+  end
+
+  def authenticate
+    session[:user_id] = nil
+    Rails.logger.debug "RUNNING AUTHENTICATE FILTER"
+    @user = session[:user_id] && User.find(session[:user_id])
+    
+    redirect_to signin_url unless @user
   end
 end

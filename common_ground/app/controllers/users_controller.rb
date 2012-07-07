@@ -47,6 +47,7 @@ class UsersController < ApplicationController
       audience: "http://#{request.host}:#{request.port}",
       assertion: assertion)
     @user = User.find_or_create_by_email res['email']
+    session[:user_id] = @user.id
     if @user
       render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{new_room_path}'"
     else
