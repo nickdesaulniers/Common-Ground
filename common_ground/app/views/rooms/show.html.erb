@@ -2,8 +2,22 @@
 
 <% if @users %>
   <% @users.each do |user| %>
-    <p><%= user.email %></p>
+    <div>
+      <p><%= user.email %></p>
+    
+      <% if user.latitude and user.longitude %>
+        <div class="latitude"><%= user.latitude %></div>
+        <div class="longitude"><%= user.longitude %></div>
+      <% end %>
+    </div>
   <% end %>
+
+  <br>
+  <div id="centroid">
+    <p>Magical Centroid</p>
+    <div class="latitude"><%= @lat %></div>
+    <div class="longitude"><%= @long %></div>
+  </div>
 <% end %>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |

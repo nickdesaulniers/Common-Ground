@@ -19,6 +19,9 @@ class RoomsController < ApplicationController
 
     @users = User.all(:conditions => {:room_id => @room.id})
 
+    @lat_long = getCentroid(@users)
+    @lat, @long = @lat_long[0], @lat_long[1]
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }
@@ -30,7 +33,9 @@ class RoomsController < ApplicationController
   # This is more like a create method
   def new
     @room = Room.create
-
+    @current_user = User.find(session[:current_user_id])
+    @current_user.room_id = @room.id
+    @current_user.save
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @room }
