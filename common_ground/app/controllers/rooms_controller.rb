@@ -134,4 +134,4 @@ class RoomsController < ApplicationController
     end
     rank(locations, { "latitude" => lat, "longitude" => lon}, )
   end
-
+end
