@@ -5,6 +5,20 @@
   <%= @user.email %>
 </p>
 
+<% if @user.latitude and @user.longitude %>
+<div id="location">
+  <p>
+    <b>Latitude:</b>
+    <%= @user.latitude %>
+  </p>
+
+  <p>
+    <b>Longitude:</b>
+    <%= @user.longitude %>
+  </p>
+</div>
+
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
