@@ -1,5 +1,10 @@
-<h1>New room</h1>
+<h1>
+  New room
+</h1>
 
-<%= render 'form' %>
+<p>
+  Invite your friends by email:
+</p>
 
-<%= link_to 'Back', rooms_path %>
+<%= email_field :user, :address %>
+<%= button_to "Invite", nil, :id => 'send_invite' %>

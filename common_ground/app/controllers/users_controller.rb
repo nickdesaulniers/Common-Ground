@@ -91,4 +91,15 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def invite
+    Rails.logger.debug params
+    @user = User.find_or_create_by_email params['email']
+    # send user an email
+    if @user
+      render nothing: true
+    else
+      render nothing: true, status: 400
+    end
+  end
 end
