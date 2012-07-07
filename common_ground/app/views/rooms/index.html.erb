@@ -1,21 +1,4 @@
-<h1>Listing rooms</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @rooms.each do |room| %>
-  <tr>
-    <td><%= link_to 'Show', room %></td>
-    <td><%= link_to 'Edit', edit_room_path(room) %></td>
-    <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Room', new_room_path %>
+<h1>
+  Common Ground
+</h1>
+<%= image_tag 'sign_in_blue.png', id: 'browser_id_sign_in' %>
