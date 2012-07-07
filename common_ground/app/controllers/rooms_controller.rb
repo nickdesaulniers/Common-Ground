@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_filter :authenticate, :only => [:show]
+  
   # GET /rooms
   # GET /rooms.json
   def index
@@ -17,6 +19,9 @@ class RoomsController < ApplicationController
 
     @users = User.all(:conditions => {:room_id => @room.id})
 
+    @lat_long = getCentroid(@users)
+    @lat, @long = @lat_long[0], @lat_long[1]
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }
@@ -28,7 +33,7 @@ class RoomsController < ApplicationController
   # This is more like a create method
   def new
     @room = Room.create
-    @current_user = User.find(session[:current_user_id])
+    @current_user = User.find(session[:user_id])
     @current_user.room_id = @room.id
     @current_user.save
     respond_to do |format|
@@ -85,6 +90,9 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def sign_in
+  end
 
   private
 
@@ -98,5 +106,11 @@ class RoomsController < ApplicationController
     if @room.members > 0
       @room.decrement!(:members)
     end
+  end
+
+  def authenticate
+    @user = session[:user_id] && User.find(session[:user_id])
+    
+    redirect_to signin_url unless @user
   end
 end

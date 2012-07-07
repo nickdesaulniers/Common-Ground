@@ -8,3 +8,5 @@
 
     User.create([{ email: 'test@commonground.com'}])
     Room.create([{ name: 'test'}, {members: 0}])
+    User.create([{ email: 'test2@commonground.com'}, {latitude: 100.0}, {longitude: 100.0}])
+    User.create([{ email: 'test3@commonground.com'}, {latitude: 150.0}, {longitude: 150.0}])
