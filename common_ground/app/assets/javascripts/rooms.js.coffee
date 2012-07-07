@@ -45,7 +45,7 @@ find = () ->
   $.ajax {
     type: 'POST',
     url: '',
-    data: # get lat and long from dom
+    data: '',# get lat and long from dom
     success: (response, status, xhr) ->
       console.log 'yo'
   }

@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_filter :authenticate, :only => [:show]
 
-  factual = Factual.new("YOUR_KEY", "YOUR_SECRET")
+  #factual = Factual.new("YOUR_KEY", "YOUR_SECRET")
 
   # GET /rooms
   # GET /rooms.json
