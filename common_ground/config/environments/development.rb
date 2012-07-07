@@ -34,4 +34,7 @@ CommonGround::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  # Allows us to use Rails.logger.debug in controllers
+  config.log_level = :debug
 end
