@@ -8,3 +8,4 @@
 
 <%= email_field :user, :address %>
 <%= button_to "Invite", nil, :id => 'send_invite' %>
+<%= hidden_field_tag :room_id, @room.id %>

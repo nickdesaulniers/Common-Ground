@@ -23,8 +23,9 @@ class RoomsController < ApplicationController
 
   # GET /rooms/new
   # GET /rooms/new.json
+  # This is more like a create method
   def new
-    @room = Room.new
+    @room = Room.create
 
     respond_to do |format|
       format.html # new.html.erb

@@ -95,9 +95,10 @@ class UsersController < ApplicationController
   def invite
     Rails.logger.debug params
     @user = User.find_or_create_by_email params['email']
+    @room = Room.find params['room']
     # send user an email
     if @user
-      UsersMailer.invite(@user).deliver
+      UsersMailer.invite(@user, @room).deliver
       render nothing: true
     else
       render nothing: true, status: 400
