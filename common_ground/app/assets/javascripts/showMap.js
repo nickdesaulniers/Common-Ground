@@ -5,20 +5,28 @@ function initialize() {
   if (!canvas)
     return;
 
-  var p = new google.maps.LatLng(37.399541, -122.0723354);
-  var myOptions = {
+  var p = new google.maps.LatLng(document.getElementById("center_latitude").textContent,
+                                 document.getElementById("center_longitude").textContent);
+                                 var myOptions = {
     center: p,
-    zoom: 12,
+    zoom: 1,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   var map = new google.maps.Map(canvas, myOptions);
   var marker = new google.maps.Marker({position: p, map: map});
-/*  // latlng: an array of instances of GLatLng
-  var latlngbounds = new GLatLngBounds();
+
+  var latitudes = document.getElementsByClassName("latitude");
+  var longitudes = document.getElementsByClassName("longitude");
+
+  var latlng = [];
+  for(var i = 0; i < latitudes.length; i++) {
+    latlng.push(new google.maps.LatLng(latitudes[i].textContent, longitudes[i].textContent));
+  }
+  var latlngbounds = new google.maps.LatLngBounds();
   for (var i = 0; i < latlng.length; i++)
   {
     var marker = new google.maps.Marker({position: latlng[i], map: map});
     latlngbounds.extend(latlng[i]);
   }
-  map.setCenter(latlngbounds.getCenter(), map.getBoundsZoomLevel(latlngbounds));
-*/}
+  map.fitBounds(latlngbounds);
+}
