@@ -13,8 +13,9 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    return [@lats/@count, @longs/@count]
-
+    if @count > 0 
+      return [@lats/@count, @longs/@count]
+    end
   end
 
 end

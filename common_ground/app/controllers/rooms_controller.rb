@@ -20,7 +20,10 @@ class RoomsController < ApplicationController
     @users = User.all(:conditions => {:room_id => @room.id})
 
     @lat_long = getCentroid(@users)
-    @lat, @long = @lat_long[0], @lat_long[1]
+
+    if @lat_long
+      @lat, @long = @lat_long[0], @lat_long[1]
+    end
 
     respond_to do |format|
       format.html # show.html.erb
