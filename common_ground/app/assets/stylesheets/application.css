@@ -17,9 +17,9 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-img {
-  height: 10%;
-  width: 10%;
+img#browser_id_sign_in {
+  height: 25%;
+  width: 25%;
 }
 
 div#content {
@@ -30,9 +30,13 @@ div#content {
 @media screen
 and (max-device-width : 480px) {
 
-  img {
-    height: 40%;
-    width: 40%;
+  img#browser_id_sign_in {
+    height: 70%;
+    width: 70%;
+  }
+
+  h1 {
+    font-size: 5em;
   }
 }
 
