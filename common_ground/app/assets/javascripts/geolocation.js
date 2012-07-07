@@ -12,6 +12,9 @@ function updatePosition(aPosition) {
 }
 
 function sendPosition(aPosition) {
-  $.post("page", { latitude: arr[0], longitude: arr[1] } );
+  $.post("http://localhost:3000/users/"+$(#ID).text(), { latitude: arr[0], longitude: arr[1] } );
 }
 
+$(document).ready(function() {
+  setTimeout(getPosition(false) , 5000);
+}

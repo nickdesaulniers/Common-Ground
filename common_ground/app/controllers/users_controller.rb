@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    @data = params[:data]
+    @data = params[:post]
     if @data
       @geo = ActiveSupport::JSON.decode(@data)
       @latitude = @geo['latitude']
