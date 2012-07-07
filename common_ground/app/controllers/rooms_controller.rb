@@ -109,8 +109,6 @@ class RoomsController < ApplicationController
   end
 
   def authenticate
-    session[:user_id] = nil
-    Rails.logger.debug "RUNNING AUTHENTICATE FILTER"
     @user = session[:user_id] && User.find(session[:user_id])
     
     redirect_to signin_url unless @user
