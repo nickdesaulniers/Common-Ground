@@ -127,10 +127,10 @@ class RoomsController < ApplicationController
     query = factual.table("global").search("restaurant").filters("country" => "US", "region" => "CA").
       geo("$circle" => {"$center" => [lat, lon], "$meters" => 10000})
     locations = query.select(:latitude, :longitude)
-    i = 0;
+    i = 0
     locations.each do |location|
-      location.id = i;
-      i++;
+      location.id = i
+      i += 1
     end
     rank(locations, { "latitude" => lat, "longitude" => lon}, )
   end
