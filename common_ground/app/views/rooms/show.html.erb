@@ -2,7 +2,7 @@
 
 <% if @users %>
   <% @users.each do |user| %>
-    <div>
+    <div class="user">
       <p><%= user.email %></p>
     
       <% if user.latitude and user.longitude %>
