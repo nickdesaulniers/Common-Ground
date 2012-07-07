@@ -58,6 +58,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    @data = params[:data]
+    if @data
+      @geo = ActiveSupport::JSON.decode(@data)
+      @latitude = @geo['latitude']
+      @longitude = @geo['longitude']
+      @user.latitude = @latitude
+      @user.longitude = @longitude
+      @user.save
+    end
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
