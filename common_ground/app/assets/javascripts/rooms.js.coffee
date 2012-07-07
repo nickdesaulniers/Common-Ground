@@ -28,6 +28,7 @@ sendInvite = (button) ->
   submitButton.prop 'disabled', true
   $.post '/users/invite', {'email': emailAddress}, (data) ->
     emailEle.removeAttr('id')
+    emailEle.css 'color', 'green'
     input = document.createElement 'input'
     input.setAttribute 'type', 'email'
     input.setAttribute 'size', '30'
