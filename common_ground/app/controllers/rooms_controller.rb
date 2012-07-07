@@ -1,6 +1,8 @@
 class RoomsController < ApplicationController
   before_filter :authenticate, :only => [:show]
-  
+
+  factual = Factual.new("YOUR_KEY", "YOUR_SECRET")
+
   # GET /rooms
   # GET /rooms.json
   def index
@@ -112,8 +114,24 @@ class RoomsController < ApplicationController
   end
 
   def authenticate
+    session[:join] = params[:id]
     @user = session[:user_id] && User.find(session[:user_id])
     
     redirect_to signin_url unless @user
+    session[:join] = nil
   end
-end
+
+  def getFactualData
+    lat = params["latitude"];
+    lon = params["longitude"];
+    query = factual.table("global").search("restaurant").filters("country" => "US", "region" => "CA").
+      geo("$circle" => {"$center" => [lat, lon], "$meters" => 10000})
+    locations = query.select(:latitude, :longitude)
+    i = 0;
+    locations.each do |location|
+      location.id = i;
+      i++;
+    end
+    rank(locations, { "latitude" => lat, "longitude" => lon}, )
+  end
+

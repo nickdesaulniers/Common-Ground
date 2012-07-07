@@ -50,7 +50,13 @@ class UsersController < ApplicationController
     session[:user_id] = @user.id
     Rails.logger.debug "SETTING USER SESSION: #{session[:user_id]}"
     if @user
-      render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{new_room_path}'"
+      if session[:join]
+        room = session[:join]
+        session[:join] = nil
+        render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{room_path(room)}'"
+      else
+        render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{new_room_path}'"
+      end
     else
       render nothing: true, status: 400
     end
@@ -99,8 +105,8 @@ class UsersController < ApplicationController
     @room = Room.find params['room']
     @user.room_id = @room.id
     @user.save
-    # send user an email
     if @user
+      ActionMailer::Base.default_url_options[:host] = request.host_with_port
       UsersMailer.invite(@user, @room).deliver
       render nothing: true
     else
