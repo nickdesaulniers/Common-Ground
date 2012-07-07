@@ -37,4 +37,7 @@ CommonGround::Application.configure do
   
   # Allows us to use Rails.logger.debug in controllers
   config.log_level = :debug
+  
+  # Debug mail
+  config.action_mailer.raise_delivery_errors = true
 end
