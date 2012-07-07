@@ -64,8 +64,8 @@ class UsersController < ApplicationController
       @geo = ActiveSupport::JSON.decode(@data)
       @latitude = @geo['latitude']
       @longitude = @geo['longitude']
-      @user.latitude = @latitude
-      @user.longitude = @longitude
+      @user.latitude = @latitude.to_f
+      @user.longitude = @longitude.to_f
       @user.save
     end
 
