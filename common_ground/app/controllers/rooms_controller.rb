@@ -15,6 +15,8 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
 
+    @users = User.all(:conditions => {:room_id => @room.id})
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @room }

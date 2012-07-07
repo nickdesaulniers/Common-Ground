@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<% if @users %>
+  <% @users.each do |user| %>
+    <p><%= user.email %></p>
+  <% end %>
+<% end %>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>
