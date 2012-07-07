@@ -1,12 +1,13 @@
 {
 <% if @users %>
   <% @users.each do |user| %>
-    { "user": {"email": "<%=user.email%>", "location":
+    { "user": {"email": "<%=user.email%>" , "location":
       { 
       <% if user.latitude and user.longitude %>
        "latitude": <%=user.latitude%>, "longitude": <%=user.longitude%>
       <% end %>
       }
+     }
     }
   <% end %>
 <% end %>

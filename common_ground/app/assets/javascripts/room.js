@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  setInterval(updateRoom, 5000);
+  setInterval(updateRoom, 15000);
 });
 
 function updateRoom() {
