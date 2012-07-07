@@ -16,10 +16,29 @@ gotAssertion = (assertion) ->
     }
   else
     console.log 'Logged Out'
-  null
+
+# TODO EMAIL VALIDATOR
+
+sendInvite = (button) ->
+  emailEle = $ '#user_address'
+  emailAddress = emailEle.val()
+  submitButton = $(button)
+  console.log 'I should email ' + emailAddress
+  emailEle.prop 'disabled', true
+  submitButton.prop 'disabled', true
+  $.post '/users/invite', {'email': emailAddress}, (data) ->
+    emailEle.removeAttr('id')
+    input = document.createElement 'input'
+    input.setAttribute 'type', 'email'
+    input.setAttribute 'size', '30'
+    input.setAttribute 'id', 'user_address'
+    emailEle.after input
+    submitButton.removeProp 'disabled'
 
 $(document).ready ->
   $('#browser_id_sign_in').click () ->
     navigator.id.get gotAssertion
     false
-  null
+  $('#send_invite').click (event) ->
+    event.preventDefault()
+    sendInvite this
