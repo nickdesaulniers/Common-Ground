@@ -37,6 +37,10 @@ sendInvite = (button) ->
       emailEle.after input
       submitButton.removeProp 'disabled'
 
+doneInviting = () ->
+  room_number = $('#room_id').val()
+  window.location.pathname = '/rooms/' + room_number
+
 $(document).ready ->
   $('#browser_id_sign_in').click () ->
     navigator.id.get gotAssertion
@@ -44,3 +48,6 @@ $(document).ready ->
   $('#send_invite').click (event) ->
     event.preventDefault()
     sendInvite this
+  $('#done_inviting').click (event) ->
+    event.preventDefault()
+    doneInviting()

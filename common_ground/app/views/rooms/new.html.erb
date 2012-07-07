@@ -7,5 +7,8 @@
 </p>
 
 <%= email_field :user, :address %>
-<%= button_to "Invite", nil, :id => 'send_invite' %>
-<%= hidden_field_tag :room_id, @room.id %>
+<div id="button_group">
+  <%= button_to "Done Inviting", nil, id: 'done_inviting' %>
+  <%= button_to "Invite", nil, id: 'send_invite' %>
+  <%= hidden_field_tag :room_id, @room.id %>
+</div>
