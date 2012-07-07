@@ -11,3 +11,13 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  background: white url('/assets/background.png') repeat-x;
+  font-family: 'Open Sans', sans-serif;
+}
+
+div#content {
+  width: 480px;
+  margin: 0 auto;
+}
