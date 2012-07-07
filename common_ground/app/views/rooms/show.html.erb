@@ -11,6 +11,13 @@
       <% end %>
     </div>
   <% end %>
+
+  <br>
+  <div id="centroid">
+    <p>Magical Centroid</p>
+    <div class="latitude"><%= @lat %></div>
+    <div class="longitude"><%= @long %></div>
+  </div>
 <% end %>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
