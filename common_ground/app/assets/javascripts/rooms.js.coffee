@@ -41,6 +41,15 @@ doneInviting = () ->
   room_number = $('#room_id').val()
   window.location.pathname = '/rooms/' + room_number
 
+find = () ->
+  $.ajax {
+    type: 'POST',
+    url: '',
+    data: '',# get lat and long from dom
+    success: (response, status, xhr) ->
+      console.log 'yo'
+  }
+
 $(document).ready ->
   $('#browser_id_sign_in').click () ->
     navigator.id.get gotAssertion
@@ -51,3 +60,6 @@ $(document).ready ->
   $('#done_inviting').click (event) ->
     event.preventDefault()
     doneInviting()
+  $('#find').click (event) ->
+    event.prventDefault()
+    find()
