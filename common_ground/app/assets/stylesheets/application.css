@@ -27,16 +27,3 @@ div#content {
   margin: 0 auto;
 }
 
-@media screen
-and (max-device-width : 480px) {
-
-  img#browser_id_sign_in {
-    height: 70%;
-    width: 70%;
-  }
-
-  h1 {
-    font-size: 5em;
-  }
-}
-
