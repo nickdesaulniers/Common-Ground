@@ -48,6 +48,7 @@ class UsersController < ApplicationController
       assertion: assertion)
     @user = User.find_or_create_by_email res['email']
     if @user
+      session[:current_user_id] = @user.id
       render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{new_room_path}'"
     else
       render nothing: true, status: 400
@@ -84,6 +85,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    session[:current_user_id] = nil
 
     respond_to do |format|
       format.html { redirect_to users_url }

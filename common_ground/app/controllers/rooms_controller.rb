@@ -28,7 +28,9 @@ class RoomsController < ApplicationController
   # This is more like a create method
   def new
     @room = Room.create
-
+    @current_user = User.find(session[:current_user_id])
+    @current_user.room_id = @room.id
+    @current_user.save
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @room }
