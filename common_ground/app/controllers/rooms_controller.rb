@@ -80,4 +80,18 @@ class RoomsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def addUser(id)
+    @room = Room.find(id)
+    @room.increment!(:members)
+  end
+
+  def removeUser(id)
+    @room = Room.find(id)
+    if @room.members > 0
+      @room.decrement!(:members)
+    end
+  end
 end
