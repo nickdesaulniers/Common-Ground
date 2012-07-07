@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       assertion: assertion)
     @user = User.find_or_create_by_email res['email']
     if @user
-      render :js => "window.location = '#{new_room_path}'"
+      render :js => "window.localStorage.setItem('user_id','#{@user.id}');window.window.location = '#{new_room_path}'"
     else
       render nothing: true, status: 400
     end
