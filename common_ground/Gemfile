@@ -22,7 +22,7 @@ end
 
 gem 'jquery-rails'
 gem 'rest-client', '1.6.7'
-
+gem 'factual-api', '1.2'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

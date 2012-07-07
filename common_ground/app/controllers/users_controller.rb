@@ -1,3 +1,5 @@
+require 'rest_client'
+
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -40,16 +42,15 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    assertion = params[:assertion]
+    res = JSON.parse(RestClient.post 'https://browserid.org/verify',
+      audience: "http://#{request.host}:#{request.port}",
+      assertion: assertion)
+    @user = User.find_or_create_by_email res['email']
+    if @user
+      render :js => "window.location = '#{new_room_path}'"
+    else
+      render nothing: true, status: 400
     end
   end
 
