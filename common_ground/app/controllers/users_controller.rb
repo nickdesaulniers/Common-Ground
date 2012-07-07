@@ -95,6 +95,8 @@ class UsersController < ApplicationController
     Rails.logger.debug params
     @user = User.find_or_create_by_email params['email']
     @room = Room.find params['room']
+    @user.room_id = @room.id
+    @user.save
     # send user an email
     if @user
       UsersMailer.invite(@user, @room).deliver
