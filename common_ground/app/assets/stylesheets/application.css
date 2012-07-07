@@ -22,6 +22,11 @@ img {
   width: 10%;
 }
 
+div#content {
+  width: 480px;
+  margin: 0 auto;
+}
+
 @media screen
 and (max-device-width : 480px) {
 
