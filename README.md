@@ -1,4 +1,4 @@
 Common-Ground
 =============
 
-Find meet equidistant meet ups
+Give us a type of venue, and we'll give you a convenient way to get your party there.
